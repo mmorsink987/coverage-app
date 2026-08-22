@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Coverage">
+<title>Coverage</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="setup" class="screen hidden">
+  <h2>Setup</h2>
+  <p class="muted">One-time per device. Token is stored on this device only.</p>
+  <label>GitHub repo</label>
+  <input id="cfg-repo" value="mmorsink987/CRM" autocapitalize="off" autocorrect="off">
+  <label>Fine-grained PAT (contents read/write, this repo only)</label>
+  <input id="cfg-token" type="password" placeholder="github_pat_…" autocapitalize="off" autocorrect="off">
+  <button id="cfg-save" class="primary">Save & sync</button>
+  <p id="cfg-status" class="muted"></p>
+</div>
+
+<div id="main" class="hidden">
+  <div id="content">
+    <!-- LOOKUP -->
+    <section id="tab-lookup" class="tab">
+      <div class="searchwrap">
+        <input id="q" type="search" placeholder="Search people, companies, everything…"
+               autocapitalize="off" autocorrect="off" spellcheck="false">
+        <span id="asof" class="asof" title="tap to sync">—</span>
+      </div>
+      <div id="results"></div>
+      <article id="card" class="hidden"></article>
+    </section>
+    <!-- NOTE -->
+    <section id="tab-note" class="tab hidden">
+      <div class="notebar">
+        <span id="note-status" class="muted">draft saved locally</span>
+        <span id="queue-badge" class="muted"></span>
+        <button id="note-save" class="primary">Save to inbox</button>
+      </div>
+      <textarea id="note" placeholder="meeting w /name re /company …&#10;&#10;(&quot;/&quot; = tag an entity — optional)"></textarea>
+      <div id="ac" class="hidden"></div>
+    </section>
+    <!-- ASK -->
+    <section id="tab-ask" class="tab hidden">
+      <div class="askpad">
+        <h3>Ask</h3>
+        <p class="muted">Deferred (R2). Triage and questions happen in Claude sessions for now —
+        this tab activates if/when the API stage is switched on.</p>
+      </div>
+    </section>
+  </div>
+  <nav id="tabs">
+    <button data-tab="lookup" class="active">Lookup</button>
+    <button data-tab="note">Note</button>
+    <button data-tab="ask">Ask</button>
+  </nav>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
